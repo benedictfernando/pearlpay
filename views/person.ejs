@@ -9,18 +9,18 @@
         <link href="/styles.css" rel="stylesheet"></link>
     </head>
     <body>
-        <form class="person-form">
+        <form class="person-form ui form">
             <input type="hidden" name="id" value="<%= id %>">
-            <div>
+            <div class="field">
                 <label for="firstname">First name</label>
                 <input type="text" name="firstname" id="firstname" value="<%= firstname %>">
             </div>
-            <div>
+            <div class="field">
                 <label for="lastname">Last name</label>
                 <input type="text" name="lastname" id="lastname" value="<%= lastname %>">
             </div>
-            <button>Send</button>
-            <div id="msg">Saved</div>
+            <button class="ui button blue">Send</button>
+            <div id="msg" class="ui message green">Saved</div>
         </form>
     </body>
     <script src="/app.js"></script>

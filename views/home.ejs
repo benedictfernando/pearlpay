@@ -7,11 +7,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
         <link href="/styles.css" rel="stylesheet"></link>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
     <body>
-        <div id="loading">Loading...</div>
-        <%- include('contacts') %>
-        <div id="content" style="float: right;"></div>
+        <div id="loading" class="ui message yellow">Loading...</div>
+        <div class="pane left-pane">
+            <%- include('contacts') %>
+        </div>
+        <div class="pane right-pane">
+            <div id="content"></div>
+        </div>
     </body>
     <script src="/jquery.js"></script>
     <script src="/app.js"></script>

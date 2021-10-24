@@ -6,12 +6,12 @@ html, body {
 body {
     height: 100%;
     position: relative;
-    text-align: center;
     background-color: #CCC;
 }
 
 table {
     margin: auto;
+    text-align: center;
 }
 
 #msg {
@@ -27,4 +27,31 @@ table {
     padding: 10px;
     font-weight: bold;
     background-color: orange;
+}
+
+.pane {
+    padding: 10px;
+    float: left;
+}
+
+.left-pane {
+    width: 300px
+}
+
+.right-pane {
+    border-left: 1px solid #ddd;
+}
+
+.people-tbl {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.people-tbl tbody tr:hover {
+    cursor: pointer;
+    background-color: #eee;
+}
+
+.people-tbl tbody tr td {
+    padding: 5px;
 }
