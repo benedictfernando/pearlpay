@@ -1,9 +1,21 @@
 
-// import express
+// import express component
 const express = require('express');
 
 // create server using express component
 const server = express();
+
+// import postgres component
+const { Pool } = require('pg');
+
+// create a new Pool object database
+const db = new Pool({
+    user: "postgres",
+    host: "localhost",
+    database: 'contacts',
+    password: 'benedict',
+    port: '9999',
+});
 
 // handle server-side codes
 server
@@ -24,6 +36,19 @@ server
         response.send({ firstname, lastname });
     })
 
+    // execute when /contacts route is visited
+    .get('/contacts', async (request, response) => {
+        
+        // create sql query
+        const query = await db.query(
+            'SELECT * FROM people'
+        );
+
+        // store resulting rows into a variable
+        const contacts = query.rows;
+        response.render('home', { contacts });
+    })  
+
     // execute when /hello route is visited
     .get('/hello', (request, response) => {
         response.send({ message1: 'hello', message2: 'world' });
@@ -37,8 +62,6 @@ server
 
         // create a json variable containing provided name
         const json = { firstname, lastname };
-
-        // send back json response to requesting client
         response.render('home', json);
     })
 
