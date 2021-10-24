@@ -1,4 +1,4 @@
-<table>
+<table class="people-tbl">
     <thead>
         <tr>
             <th>First name</th>
@@ -7,7 +7,7 @@
     </thead>
     <tbody>
         <% contacts.forEach(i => { %>
-        <tr>
+        <tr data-id="<%= i.id %>">
             <td><%= i.firstname %></td>
             <td><%= i.lastname %></td>
         </tr>

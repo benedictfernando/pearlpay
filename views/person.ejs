@@ -9,8 +9,7 @@
         <link href="/styles.css" rel="stylesheet"></link>
     </head>
     <body>
-        
-        <form action="/contact" method="POST">
+        <form class="person-form">
             <input type="hidden" name="id" value="<%= id %>">
             <div>
                 <label for="firstname">First name</label>
@@ -21,8 +20,9 @@
                 <input type="text" name="lastname" id="lastname" value="<%= lastname %>">
             </div>
             <button>Send</button>
+            <div id="msg">Saved</div>
         </form>
-
     </body>
     <script src="/app.js"></script>
+    <script src="/person-form.js"></script>
 </html>

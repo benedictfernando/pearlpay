@@ -6,3 +6,9 @@ body {
 table {
     margin: auto;
 }
+
+#msg {
+    font-weight: bold;
+    display: none;
+    color: green;
+}
