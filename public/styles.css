@@ -1,4 +1,11 @@
+
+html, body {
+    height: 100%;
+}
+
 body {
+    height: 100%;
+    position: relative;
     text-align: center;
     background-color: #CCC;
 }
@@ -8,7 +15,16 @@ table {
 }
 
 #msg {
-    font-weight: bold;
     display: none;
     color: green;
+    font-weight: bold;
+}
+
+#loading {
+    position: absolute;
+    top: 0; left: 0;
+    display: none;
+    padding: 10px;
+    font-weight: bold;
+    background-color: orange;
 }
