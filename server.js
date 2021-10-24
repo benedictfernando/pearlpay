@@ -25,6 +25,7 @@ server
     .use('/', require('./routes/name'))
     .use('/hello', require('./routes/hello'))
     .use('/person', require('./routes/person'))
+    .use('/contact', require('./routes/contact'))
     .use('/contacts', require('./routes/contacts'))
 
     // prompt user when port 3000 is visited

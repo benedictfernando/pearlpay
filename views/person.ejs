@@ -9,7 +9,20 @@
         <link href="/styles.css" rel="stylesheet"></link>
     </head>
     <body>
-        hello <%= firstname %> <%= lastname %>
+        
+        <form action="/contact" method="POST">
+            <input type="hidden" name="id" value="<%= id %>">
+            <div>
+                <label for="firstname">First name</label>
+                <input type="text" name="firstname" id="firstname" value="<%= firstname %>">
+            </div>
+            <div>
+                <label for="lastname">Last name</label>
+                <input type="text" name="lastname" id="lastname" value="<%= lastname %>">
+            </div>
+            <button>Send</button>
+        </form>
+
     </body>
     <script src="/app.js"></script>
 </html>
