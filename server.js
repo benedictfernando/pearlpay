@@ -9,11 +9,17 @@ const server = express();
 // handle server-side codes
 server
 
+    // set ejs files as views for the user
+    .set('view engine', 'ejs')
+
     // use the 'public' folder to serve other static files
     .use(express.static('public'))
 
-    // set ejs files as views for the user
-    .set('view engine', 'ejs')
+    // configure server to now receive requests of json data
+    .use(express.json())
+
+    // configure server to now receive submitted form data
+    .use(express.urlencoded({ extended: true }))
 
     // route to its respective references
     .use('/', require('./routes/name'))

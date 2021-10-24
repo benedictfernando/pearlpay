@@ -12,4 +12,14 @@ route
         response.render('person', json);
     })
 
+    .post('/', (request, response) => {
+
+        // collect data that was submitted by the user
+        const { body } = request;
+        const { firstname, lastname } = body;
+
+        // send back user the response greeting
+        response.send(`Hello ${firstname} ${lastname}`);
+    })
+
 module.exports = route;
