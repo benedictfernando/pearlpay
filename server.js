@@ -8,6 +8,12 @@ const server = express();
 // handle server-side codes
 server
 
+    // use the 'public' folder to serve other static files
+    .use(express.static('public'))
+
+    // set ejs files as views for the user
+    .set('view engine', 'ejs')
+
      // execute when home route is visited
     .get('/', (request, response) => {
 
@@ -29,8 +35,11 @@ server
         // get first name & last name from route paths
         const { firstname, lastname } = request.params;
 
+        // create a json variable containing provided name
+        const json = { firstname, lastname };
+
         // send back json response to requesting client
-        response.send({ firstname, lastname });
+        response.render('home', json);
     })
 
     // prompt user when port 3000 is visited
