@@ -1,0 +1,11 @@
+###
+http://localhost:3000/?firstname=benedict&lastname=fernando
+
+###
+http://localhost:3000/person/benedict/fernando
+
+###
+http://localhost:3000/contacts/
+
+###
+http://localhost:3000/contact/1
