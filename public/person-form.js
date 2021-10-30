@@ -1,4 +1,37 @@
 $(function() {
+
+    function removeAtr(btn) {
+        btn = $(btn);
+        var tr = btn.closest('tr');
+        tr.remove();
+    };
+
+    $('.person-form .ea-tbl .ea-btn-add').on('click', function() {
+        var html =
+        `
+            <tr>
+                <td>
+                    <a href="javascript:" class="ui button icon ea-btn-remove">
+                        <i class="icon close"></i>
+                    </a>
+                </td>
+                <td class="field">
+                    <input type="text" name="emailaddresses" value>
+                </td>
+            </tr>
+        `;
+
+        html = $(html);
+        $('.person-form .ea-tbl tbody').append(html);
+        html.find('.ea-btn-remove').on('click', function() {
+            removeAtr(this);
+        });
+    });
+
+    $('.person-form .ea-btn-remove').on('click', function() {
+        removeAtr(this);
+    });
+
     $('.person-form').on('submit', function(e) {
         e.preventDefault();
         var form = $(this);
