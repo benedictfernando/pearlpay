@@ -22,13 +22,16 @@ server
     .use(express.urlencoded({ extended: true }))
 
     // route to its respective references
-    .use('/', require('./routes/name'))
-    .use('/hello', require('./routes/hello'))
-    .use('/person', require('./routes/person'))
-    .use('/contact', require('./routes/contact'))
-    .use('/contacts', require('./routes/contacts'))
+    // .use('/', require('./routes/name'))
+    // .use('/hello', require('./routes/hello'))
+    // .use('/person', require('./routes/person'))
+    // .use('/contact', require('./routes/contact'))
+    // .use('/contacts', require('./routes/contacts'))
 
     // prompt user when port 3000 is visited
     .listen(3000, () => {
         console.log('server is now running...');
     });
+
+// add route services functionality
+require('./services/routeService')(server);
