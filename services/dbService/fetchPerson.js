@@ -5,7 +5,7 @@ module.exports = async (id) => {
 
     // create sql query
     const query = await db.query(
-        'SELECT id, firstname, lastname FROM people WHERE id=$1', [id]
+        'SELECT id, firstname, lastname, emailaddresses FROM people WHERE id=$1', [id]
     );
 
     // returns resulting rows
