@@ -1,6 +1,7 @@
 const { response } = require('express');
 const fetchPerson = require('../services/dbService/fetchPerson');
 const upsertPerson = require('../services/dbService/upsertPerson');
+const deletePerson = require('../services/dbService/deletePerson');
 
 const route = require('express').Router();
 
@@ -10,7 +11,8 @@ route
         response.render('person', {
             id: null,
             firstname: null,
-            lastname: null
+            lastname: null,
+            emailaddresses: null
         })
     })
 
@@ -25,5 +27,11 @@ route
         await upsertPerson(body);
         response.end();
     })
+
+    .delete('/:id', async (request, response) => {
+        const { id } = request.params;
+        await deletePerson(id);
+        response.sendStatus(204);
+    });
 
 module.exports = route;

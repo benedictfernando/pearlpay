@@ -3,6 +3,9 @@ const db = require('./dbPool');
 
 module.exports = async ({ id, firstname, lastname, emailaddresses }) => {
 
+    // convert single string to an array of that single string
+    if (typeof(emailaddresses) === 'string') { emailaddresses = [emailaddresses] }
+
     // initialize variable for later manipulation
     const toInsert = !id; var sql;
         
