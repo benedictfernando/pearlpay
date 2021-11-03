@@ -1,59 +1,45 @@
-<!DOCTYPE html>
-
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <link href="/styles.css" rel="stylesheet"></link>
-    </head>
-    <body>
-        <form class="person-form ui form">
-            <input type="hidden" name="id" value="<%= id %>">
-            <div class="field">
-                <label for="firstname">First name</label>
-                <input type="text" name="firstname" id="firstname" value="<%= firstname %>">
-            </div>
-            <div class="field">
-                <label for="lastname">Last name</label>
-                <input type="text" name="lastname" id="lastname" value="<%= lastname %>">
-            </div>
-            <div>
-                <table class="ea-tbl">
-                    <thead>
-                        <tr>
-                            <th>
-                                <a href="javascript:" class="ui button icon ea-btn-add">
-                                    <i class="icon plus"></i>
-                                </a>
-                            </th>
-                            <th>
-                                Email address
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% emailaddresses?.forEach(emailaddress => { %>
-                        <tr>
-                            <td>
-                                <a href="javascript:" class="ui button icon ea-btn-remove">
-                                    <i class="icon close"></i>
-                                </a>
-                            </td>
-                            <td class="field">
-                                <input type="text" name="emailaddresses" value="<%= emailaddress %>">
-                            </td>
-                        </tr>
-                        <% }) %>
-                    </tbody>
-                </table>
-            </div>
-            <br>
-            <button class="ui button blue">Send</button>
-            <div id="msg" class="ui message green">Saved</div>
-        </form>
-    </body>
-    <script src="/app.js"></script>
-    <script src="/person-form.js"></script>
-</html>
+<form class="person-form ui form">
+    <input type="hidden" name="id" value="<%= id %>">
+    <div class="field">
+        <label for="firstname">First name</label>
+        <input type="text" name="firstname" id="firstname" value="<%= firstname %>">
+    </div>
+    <div class="field">
+        <label for="lastname">Last name</label>
+        <input type="text" name="lastname" id="lastname" value="<%= lastname %>">
+    </div>
+    <div>
+        <table class="ea-tbl">
+            <thead>
+                <tr>
+                    <th>
+                        <a href="javascript:" class="ui button icon ea-btn-add">
+                            <i class="icon plus"></i>
+                        </a>
+                    </th>
+                    <th>
+                        Email address
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <% emailaddresses?.forEach(emailaddress => { %>
+                <tr>
+                    <td>
+                        <a href="javascript:" class="ui button icon ea-btn-remove">
+                            <i class="icon close"></i>
+                        </a>
+                    </td>
+                    <td class="field">
+                        <input type="text" name="emailaddresses" value="<%= emailaddress %>">
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+    <br>
+    <button class="ui button blue">Send</button>
+    <div id="msg" class="ui message green">Saved</div>
+</form>
+<script src="/person-form.js"></script>
