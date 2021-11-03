@@ -28,13 +28,19 @@ $(function() {
         var btn = $(this);
         var tr = btn.closest('tr');
         var id = tr.data('id');
-        $.ajax({
-            url: '/contact/' + id,
-            type: 'DELETE',
-            success: function() {
-                tr.remove();
-            }
-        });
+        var firstname = tr.find('td:nth(1)').html();
+        var lastname = tr.find('td:nth(2)').html();
+
+        if (confirm(`Do you wish to continue deleting ${firstname} ${lastname}?`)) {
+            $.ajax({
+                url: '/contact/' + id,
+                type: 'DELETE',
+                success: function() {
+                    tr.remove();
+                    $('#content').empty();
+                }
+            });
+        }
         // prevent event bubbling
         return false;
     });
