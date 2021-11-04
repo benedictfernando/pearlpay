@@ -39,6 +39,43 @@
         </table>
     </div>
     <br>
+    <div>
+        <table class="pa-tbl">
+            <thead>
+                <tr>
+                    <th>
+                        <a href="javascript:" class="ui button icon pa-btn-add">
+                            <i class="icon plus"></i>
+                        </a>
+                    </th>
+                    <th>Street</th>
+                    <th>City</th>
+                    <th>Zip Code</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% postaladdresses?.forEach(pa => { %>
+                <tr>
+                    <td>
+                        <a href="javascript:" class="ui button icon pa-btn-remove">
+                            <i class="icon close"></i>
+                        </a>
+                    </td>
+                    <td class="field">
+                        <input type="hidden" name="id" value="<%= pa.id %>">
+                        <input type="text" name="street" value="<%= pa.street %>">
+                    </td>
+                    <td class="field">
+                        <input type="text" name="city" value="<%= pa.city %>">
+                    </td>
+                    <td class="field">
+                        <input type="text" name="zipcode" value="<%= pa.zipcode %>">
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
     <button class="ui button blue">Send</button>
     <div id="msg" class="ui message green">Saved</div>
 </form>
