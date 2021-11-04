@@ -54,7 +54,7 @@
                 </tr>
             </thead>
             <tbody>
-                <% postaladdresses?.forEach(pa => { %>
+                <% postaladdresses?.forEach((pa, idx) => { %>
                 <tr>
                     <td>
                         <a href="javascript:" class="ui button icon pa-btn-remove">
@@ -62,14 +62,14 @@
                         </a>
                     </td>
                     <td class="field">
-                        <input type="hidden" name="id" value="<%= pa.id %>">
-                        <input type="text" name="street" value="<%= pa.street %>">
+                        <input type="hidden" name="postaladdresses[<%= idx %>].id" value="<%= pa.id %>">
+                        <input type="text" name="postaladdresses[<%= idx %>].street" value="<%= pa.street %>">
                     </td>
                     <td class="field">
-                        <input type="text" name="city" value="<%= pa.city %>">
+                        <input type="text" name="postaladdresses[<%= idx %>].city" value="<%= pa.city %>">
                     </td>
                     <td class="field">
-                        <input type="text" name="zipcode" value="<%= pa.zipcode %>">
+                        <input type="text" name="postaladdresses[<%= idx %>].zipcode" value="<%= pa.zipcode %>">
                     </td>
                 </tr>
                 <% }) %>

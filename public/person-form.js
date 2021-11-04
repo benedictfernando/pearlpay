@@ -38,7 +38,7 @@ $(function() {
         $.ajax({
             url: '/contact',
             type: 'POST',
-            data: form.serialize(),
+            data: form.serializeToJSON({ associativeArrays: true }),
             success: function() {
                 form.find('#msg').show().delay(3000).fadeOut();
             }
