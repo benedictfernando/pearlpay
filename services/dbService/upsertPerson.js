@@ -19,15 +19,15 @@ module.exports = async ({ id, firstname, lastname, emailaddresses, postaladdress
         // initialize variable for later manipulation
         const toInsert = !id; var sql;
             
-        // insert person for new submissions
         if(toInsert) {
+            // insert person for new submissions
             sql = `INSERT INTO people (firstname, lastname, emailaddresses) VALUES ($1, $2, $3)`
-            await db.query(sql, [firstname, lastname, emailaddresses]); return;
+            await db.query(sql, [firstname, lastname, emailaddresses]);
+        } else {
+            // else, update existing data
+            sql = `UPDATE people SET firstname=$1, lastname=$2, emailaddresses=$4 WHERE id=$3`;
+            await db.query(sql, [firstname, lastname, id, emailaddresses]);
         }
-
-        // else, update existing data
-        sql = `UPDATE people SET firstname=$1, lastname=$2, emailaddresses=$4 WHERE id=$3`;
-        await db.query(sql, [firstname, lastname, id, emailaddresses]);
 
         // insert person's postal address(es)
         postaladdresses.forEach(async pa => {
