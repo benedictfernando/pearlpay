@@ -32,8 +32,8 @@ module.exports = async ({ id, firstname, lastname, emailaddresses, postaladdress
         // insert person's postal address(es)
         postaladdresses.forEach(async pa => {
             if (!pa.id) {
-                sql = `INSERT INTO postaladdresses (street, city, zipcode) VALUES ($1, $2, $3)`;
-                await db.query(sql, [pa.street, pa.city, pa.zipcode]);
+                sql = `INSERT INTO postaladdresses (street, city, zipcode, p_id) VALUES ($1, $2, $3, $4)`;
+                await db.query(sql, [pa.street, pa.city, pa.zipcode, id]);
             } else {
                 // update person's existing postal address(es)
                 sql = `UPDATE postaladdresses SET street=$2, city=$3, zipcode=$4 WHERE id=$1`;
