@@ -1,6 +1,8 @@
 
 const dbPool = require('./dbPool');
 
+const { v4: uuid } = require("uuid");
+
 module.exports = async ({ id, firstname, lastname, emailaddresses, postaladdresses }) => {
 
     // initialize an empty database
