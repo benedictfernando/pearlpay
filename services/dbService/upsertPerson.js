@@ -18,28 +18,33 @@ module.exports = async ({ id, firstname, lastname, emailaddresses, postaladdress
         // convert single string to an array of that single string
         if (typeof(emailaddresses) === 'string') { emailaddresses = [emailaddresses] }
 
-        // initialize variable for later manipulation
-        const toInsert = !id; var sql;
+        var sql; // initialize variable for later manipulation
             
-        if(toInsert) {
+        if(!id) {
+            // create a new uuid
+            id = uuid();
+
             // insert person for new submissions
-            sql = `INSERT INTO people (firstname, lastname, emailaddresses) VALUES ($1, $2, $3)`
-            await db.query(sql, [firstname, lastname, emailaddresses]);
+            sql = `INSERT INTO people (firstname, lastname, emailaddresses, p_id) VALUES ($1, $2, $3, $4)`
+            await db.query(sql, [firstname, lastname, emailaddresses, id]);
         } else {
             // else, update existing data
-            sql = `UPDATE people SET firstname=$1, lastname=$2, emailaddresses=$4 WHERE id=$3`;
+            sql = `UPDATE people SET firstname=$1, lastname=$2, emailaddresses=$4 WHERE p_id=$3`;
             await db.query(sql, [firstname, lastname, id, emailaddresses]);
         }
 
         // insert person's postal address(es)
         postaladdresses.forEach(async pa => {
             if (!pa.id) {
-                sql = `INSERT INTO postaladdresses (street, city, zipcode, p_id) VALUES ($1, $2, $3, $4)`;
-                await db.query(sql, [pa.street, pa.city, pa.zipcode, id]);
+                // create a new uuid
+                pa.id = uuid();
+
+                sql = `INSERT INTO postaladdresses (street, city, zipcode, p_id, pa_id) VALUES ($1, $2, $3, $4, $5)`;
+                await db.query(sql, [pa.street, pa.city, pa.zipcode, id, pa.id]);
             } else {
                 // update person's existing postal address(es)
-                sql = `UPDATE postaladdresses SET street=$2, city=$3, zipcode=$4 WHERE id=$1`;
-                await db.query(sql, [pa.id, pa.street, pa.city, pa.zipcode]);
+                sql = `UPDATE postaladdresses SET street=$2, city=$3, zipcode=$4, p_id=$5 WHERE pa_id=$1`;
+                await db.query(sql, [pa.id, pa.street, pa.city, pa.zipcode, id]);
             }
         });
 
