@@ -1,5 +1,5 @@
-$(function() {
-
+modules['person-form-js'] = function(html) {
+    
     var eatbl = $('.person-form .ea-tbl tbody');
     var patbl = $('.person-form .pa-tbl tbody');
 
@@ -10,7 +10,7 @@ $(function() {
     };
 
     $('.person-form .ea-tbl .ea-btn-add').on('click', function() {
-        var html =
+        var _html =
         `
             <tr>
                 <td>
@@ -24,8 +24,8 @@ $(function() {
             </tr>
         `;
 
-        html = $(html); eatbl.append(html);
-        html.find('.ea-btn-remove').on('click', function() {
+        _html = $(_html); eatbl.append(_html);
+        _html.find('.ea-btn-remove').on('click', function() {
             removeAtr(this);
         });
     });
@@ -36,7 +36,7 @@ $(function() {
 
     $('.person-form .pa-tbl .pa-btn-add').on('click', function() {
         var idx = patbl.find('tr').length;
-        var html =
+        var _html =
         `
             <tr>
                 <td>
@@ -57,8 +57,8 @@ $(function() {
             </tr>
         `;
 
-        html = $(html); patbl.append(html);
-        html.find('.pa-btn-remove').on('click', function() {
+        _html = $(_html); patbl.append(_html);
+        _html.find('.pa-btn-remove').on('click', function() {
             removeAtr(this);
         });
     });
@@ -70,7 +70,7 @@ $(function() {
     $('.person-form').on('submit', function(e) {
         e.preventDefault();
         var form = $(this);
-        $.ajax({
+        app.ajax({
             url: '/contact',
             type: 'POST',
             data: form.serializeToJSON({ associativeArrays: true }),
@@ -79,4 +79,4 @@ $(function() {
             }
         });
     });
-});
+}
