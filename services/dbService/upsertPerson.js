@@ -34,7 +34,7 @@ module.exports = async ({ id, firstname, lastname, emailaddresses, postaladdress
         }
 
         // insert person's postal address(es)
-        postaladdresses.forEach(async pa => {
+        postaladdresses?.forEach(async pa => {
             if (!pa.id) {
                 // create a new uuid
                 pa.id = uuid();
@@ -49,11 +49,11 @@ module.exports = async ({ id, firstname, lastname, emailaddresses, postaladdress
         });
 
         // delete person's postaladdress(es)
-        const pa_ids = postaladdresses.filter(i => !!i.id).map(i => `'${i.id}'`).join(',');
+        const pa_ids = postaladdresses?.filter(i => !!i.id).map(i => `'${i.id}'`).join(',') || [];
         if (pa_ids.length > 0) {
             await db.query(`DELETE FROM postaladdresses
-                WHERE p_id=$1 AND pa_id NOT IN (${pa_ids})`, [id])
-        }
+                WHERE p_id=$1 AND pa_id NOT IN (${pa_ids})`, [id]);
+        } else { await db.query(`DELETE FROM postaladdresses WHERE p_id=$1`, [id]); }
 
         // push all changes to database if all commits have been successful
         await db.query('COMMIT');
