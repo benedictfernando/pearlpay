@@ -1,6 +1,11 @@
 
+// require environmental variables configurations
+require('dotenv').config();
+
 // import express component
 const express = require('express');
+
+// include services
 const cryptService = require('./services/cryptService');
 const fetchPeople = require('./services/dbService/fetchPeople');
 

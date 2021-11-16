@@ -1,4 +1,4 @@
-const se = require('simple-encryptor')('benedictfernando');
+const se = require('simple-encryptor')(process.env.PASSPHRASE);
 
 const x = {
     encrypt: val => {
