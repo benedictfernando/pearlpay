@@ -1,4 +1,5 @@
 const { response } = require('express');
+const cryptService = require('../services/cryptService');
 const fetchPerson = require('../services/dbService/fetchPerson');
 const upsertPerson = require('../services/dbService/upsertPerson');
 const deletePerson = require('../services/dbService/deletePerson');
@@ -17,7 +18,8 @@ route
     })
 
     .get('/:id',  async (request, response) => {
-        const { id } = request.params;
+        let { id } = request.params;
+        id = cryptService.decrypt(id);
         const data = await fetchPerson(id);
         response.render('person', data);
     })

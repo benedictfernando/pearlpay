@@ -1,6 +1,7 @@
 
 // import express component
 const express = require('express');
+const cryptService = require('./services/cryptService');
 const fetchPeople = require('./services/dbService/fetchPeople');
 
 // create server using express component
@@ -35,3 +36,10 @@ server
 
 // add route services functionality
 require('./services/routeService')(server);
+
+// include cryptService to local functions
+server.locals.functions = {
+    encrypt: val => {
+        return cryptService.encrypt(val);
+    }
+}
