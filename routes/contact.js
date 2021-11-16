@@ -3,6 +3,7 @@ const cryptService = require('../services/cryptService');
 const fetchPerson = require('../services/dbService/fetchPerson');
 const upsertPerson = require('../services/dbService/upsertPerson');
 const deletePerson = require('../services/dbService/deletePerson');
+const decryptIdMw = require('../services/middleware/decryptIdMw');
 
 const route = require('express').Router();
 
@@ -17,9 +18,8 @@ route
         })
     })
 
-    .get('/:id',  async (request, response) => {
+    .get('/:id', decryptIdMw, async (request, response) => {
         let { id } = request.params;
-        id = cryptService.decrypt(id);
         const data = await fetchPerson(id);
         response.render('person', data);
     })
