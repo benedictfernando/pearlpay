@@ -1,7 +1,8 @@
 modules['person-form-js'] = function(html) {
     
-    var eatbl = $('.person-form .ea-tbl tbody');
-    var patbl = $('.person-form .pa-tbl tbody');
+    var form = html.find('.person-form');
+    var eatbl = form.find('.ea-tbl');
+    var patbl = form.find('.pa-tbl');
 
     function removeAtr(btn) {
         btn = $(btn);
@@ -9,7 +10,7 @@ modules['person-form-js'] = function(html) {
         tr.remove();
     };
 
-    $('.person-form .ea-tbl .ea-btn-add').on('click', function() {
+    eatbl.find('.ea-btn-add').on('click', function() {
         var _html =
         `
             <tr>
@@ -24,17 +25,17 @@ modules['person-form-js'] = function(html) {
             </tr>
         `;
 
-        _html = $(_html); eatbl.append(_html);
+        _html = $(_html); eatbl.find('tbody').append(_html);
         _html.find('.ea-btn-remove').on('click', function() {
             removeAtr(this);
         });
     });
 
-    $('.person-form .ea-btn-remove').on('click', function() {
+    eatbl.find('.ea-btn-remove').on('click', function() {
         removeAtr(this);
     });
 
-    $('.person-form .pa-tbl .pa-btn-add').on('click', function() {
+    patbl.find('.pa-btn-add').on('click', function() {
         var idx = patbl.find('tr').length;
         var _html =
         `
@@ -57,17 +58,17 @@ modules['person-form-js'] = function(html) {
             </tr>
         `;
 
-        _html = $(_html); patbl.append(_html);
+        _html = $(_html); patbl.find('tbody').append(_html);
         _html.find('.pa-btn-remove').on('click', function() {
             removeAtr(this);
         });
     });
 
-    $('.person-form .pa-tbl .pa-btn-remove').on('click', function() {
+    patbl.find('.pa-btn-remove').on('click', function() {
         removeAtr(this);
     });
 
-    $('.person-form').on('submit', function(e) {
+    form.on('submit', function(e) {
         e.preventDefault();
         var form = $(this);
         app.ajax({
