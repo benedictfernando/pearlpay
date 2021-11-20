@@ -8,4 +8,10 @@ http://localhost:3000/person/benedict/fernando
 http://localhost:3000/contacts/
 
 ###
-http://localhost:3000/contact/1
+http://localhost:3000/api/contacts
+
+###
+http://localhost:3000/api/contact/a08f28fb24c7027d272f8cb6f0d12ba8f522a5d87a6d8997292d6ca8451127226ddf71e968a9f0d976a1709799212c12BZv3GCgjbNoHOBXACieKSmKOqWCM17FalIqSVCuikWDJfgFK%2FbBzdnPOkOHeYLA1
+
+###
+http://localhost:3000/api/contact/4b8fac1f7c6513e45b12f06f12d486043b40811acf16567281227b18dd4afe5c926b87f02ab8935c8a13d8164f1b2761xywoz49jw0GHbJ8ChXXtwEh4R5%2BVR9L9MP2LYQz3rrv7bI76b3oRpgYO6qgUB8KT
