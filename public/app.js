@@ -8,8 +8,9 @@ $.ajaxSetup({
         $('#loading').fadeOut(1000);
     },
 
-    error: function() {
-        $('#loading').hide();
+    error: function(xhr) {
+        $('#loading').hide(); var { responseJSON } = xhr;
+        var { message } = responseJSON; alert(message);
     }
 });
 

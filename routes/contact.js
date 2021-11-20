@@ -25,9 +25,13 @@ route
     })
 
     .post('/', async (request, response) => {
-        const { body } = request;
-        await upsertPerson(body);
-        response.end();
+        try {
+            const { body } = request;
+            await upsertPerson(body);
+            response.end();
+        } catch(error) {
+            response.status(500).send({ message: error.message });
+        }
     })
 
     .delete('/:id', async (request, response) => {
