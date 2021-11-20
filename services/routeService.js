@@ -4,6 +4,40 @@ const fs = require('fs')
 
 const sourceDir = './routes'
 
+function exceptionCatcherWrapper(middleware) {
+
+    return async (request, response, next) => {
+
+        try {
+
+            return await middleware(request, response, next);
+        }
+        catch (err) {
+
+            if(process.env.NODE_ENV !== 'production') {
+
+                console.error(err.stack);
+            }
+
+            // response.status(500).send({ message: err.message })
+            next(err);
+        }
+    }
+}
+
+function wrapRouterWithExceptionCatcherWrapper(stack) {
+
+    stack?.forEach((_stack => {
+
+        if (_stack.handle) {
+
+            _stack.handle = exceptionCatcherWrapper(_stack.handle)
+        }
+
+        wrapRouterWithExceptionCatcherWrapper(_stack.route?.stack)
+    }))
+}
+
 module.exports = server => {
 
     function recurseIntoDir(dir) {
@@ -39,9 +73,22 @@ module.exports = server => {
 
             console.log(`${fileName} => ${route}`);
 
+            const router = require(fileName)
+
+            wrapRouterWithExceptionCatcherWrapper(router.stack)
+
             server.use(route, require(fileName));
         });
     }
 
     recurseIntoDir(sourceDir)
+
+    server.use((err, request, response, next) => {
+
+        const { message } = err
+
+        if (!message) response.end()
+
+        response.status(500).send({ message })
+    })
 }
