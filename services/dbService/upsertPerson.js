@@ -5,7 +5,7 @@ const { v4: uuid } = require("uuid");
 
 module.exports = async ({ id, firstname, lastname, emailaddresses, postaladdresses }) => {
 
-    throw new Error('database error');
+    // throw new Error('database error');
 
     // initialize an empty database
     let db = null;
